@@ -6,7 +6,7 @@ pixelCount = 10000;
 t = 1;
 
 function loop() {
-    t += 0.0010;
+    t += 0.0025;
 
     if (t >= 1) {
         t = 0;
@@ -40,6 +40,6 @@ function loop() {
     }
 }
 
-setInterval(loop, 1 / 30);
+setInterval(loop, 1000 / 30);
 
 </script>
