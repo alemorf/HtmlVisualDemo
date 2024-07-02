@@ -1,0 +1,45 @@
+<canvas width=1920 height=1080>
+<script>
+c = document.querySelector("canvas").getContext("2d");
+
+pixelCount = 10000;
+t = 1;
+
+function loop() {
+    t += 0.0010;
+
+    if (t >= 1) {
+        t = 0;
+
+        k = -1.5 - Math.floor(Math.random() * 10) / 2;
+        p = 2 + Math.floor(Math.random() * 10 / -k);
+
+        s = Math.PI * 2 / pixelCount;
+        if (k != Math.floor(k))
+            s *= Math.pow(2, p - 1);
+
+        color = "rgb(" + Math.floor(Math.random() * 222)
+                 + "," + Math.floor(Math.random() * 222)
+                 + "," + Math.floor(Math.random() * 222) + ")";
+    }
+
+    d = Math.sin(t * Math.PI) * 0.75;
+
+    c.fillStyle = "rgba(255, 255, 255, 0.05)";
+    c.fillRect(0, 0, 1920, 1080);
+    c.fillStyle = color;
+
+    for (i = 0; i < pixelCount; i++) {
+        x = 0;
+        y = 0;
+        for (j = 0; j < p; j++) {
+            x += Math.pow(d, j) * Math.sin(t + Math.pow(k, j) * i * s);
+            y += Math.pow(d, j) * Math.cos(t + Math.pow(k, j) * i * s);
+        }
+        c.fillRect(1920 / 2 + 220 * x, 1080 / 2 + 220 * y, 1, 1);
+    }
+}
+
+setInterval(loop, 1 / 30);
+
+</script>
